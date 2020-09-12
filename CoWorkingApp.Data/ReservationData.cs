@@ -1,6 +1,8 @@
 using System;
 using CoWorking.App.Models;
 using CoWorking.App.Data;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace CoWorkingApp.Data
 {
@@ -20,5 +22,33 @@ namespace CoWorkingApp.Data
 
             jsonManager.SaveCollection(reservationCollection);
         }
+
+        public bool CancelReservation(Guid reservationId)
+        {
+            var reservationCollection = jsonManager.GetCollection();
+
+            var indexReservation = reservationCollection.FindIndex(p=>p.ReservationId == reservationId);
+
+            reservationCollection.RemoveAt(indexReservation);
+
+            jsonManager.SaveCollection(reservationCollection);
+
+            return true;
+        }
+
+        public IEnumerable<Reservation> GetReservationByUser(Guid UserId)
+        {
+            var reservationCollection = jsonManager.GetCollection();
+
+            return reservationCollection.Where(p => p.UserId == UserId && p.ReservationDate>DateTime.Now);
+        }
+
+        public IEnumerable<Reservation> GetReservationHistoryByUser(Guid UserId)
+        {
+            var reservationCollection = jsonManager.GetCollection();
+
+            return reservationCollection.Where(p => p.UserId == UserId);
+        }
+
     }
 }

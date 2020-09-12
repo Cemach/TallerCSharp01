@@ -61,6 +61,11 @@ namespace CoWorking.App.Data{
             return jsonManager.GetCollection().Where(p=> p.DeskStatus == Models.Enumerations.DeskStatus.Active);
         }
 
+        public IEnumerable<Desk> GetAllDesks()
+        {
+            return jsonManager.GetCollection();
+        }
+
     }
 
 

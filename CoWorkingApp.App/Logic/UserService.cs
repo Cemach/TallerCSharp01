@@ -5,6 +5,8 @@ using CoWorkingApp.App.Enumerations;
 using CoWorking.App.Models;
 using System.Globalization;
 using CoWorkingApp.Data;
+using System.Linq;
+using CoWorkingApp.App.Tools;
 
 namespace CoWorkingApp.App.Logic
 {
@@ -19,6 +21,7 @@ namespace CoWorkingApp.App.Logic
             this.userData = userData;
             this.deskData = deskData;
             this.user = user;
+            this.reservationData = new ReservationData();
         }
 
         public void ExecuteAction(AdminUser menuAdminUserSelected)
@@ -36,7 +39,7 @@ namespace CoWorkingApp.App.Logic
                 Console.WriteLine("Escriba el Email");
                 newUser.Email = Console.ReadLine();
                 Console.WriteLine("Escriba el password");
-                newUser.PassWord = EncryptData.GetPassWord();
+                newUser.PassWord = PasswordManager.GetPassWord();
 
                 userData.CreateUser(newUser);
 
@@ -59,7 +62,7 @@ namespace CoWorkingApp.App.Logic
                 Console.WriteLine("Escriba el Email");
                 userFound.Email = Console.ReadLine();
                 Console.WriteLine("Escriba el password");
-                userFound.PassWord = EncryptData.GetPassWord();
+                userFound.PassWord = PasswordManager.GetPassWord();
 
                 userData.EditUser(userFound);
 
@@ -92,7 +95,7 @@ namespace CoWorkingApp.App.Logic
                 }
 
                 Console.WriteLine("Escriba el password");
-                userFoundPassword.PassWord = EncryptData.GetPassWord();
+                userFoundPassword.PassWord = PasswordManager.GetPassWord();
                 userData.EditUser(userFoundPassword);
                 Console.WriteLine("Usuario Editado!");
                 break;
@@ -108,7 +111,7 @@ namespace CoWorkingApp.App.Logic
                 Console.WriteLine("Ingrese usuario");
                 var userLogin = Console.ReadLine();
                 Console.WriteLine("Ingrese Constraseña");
-                var passwordLogin = EncryptData.GetPassWord();
+                var passwordLogin = PasswordManager.GetPassWord();
 
                 var userLogged = userData.Login(userLogin,passwordLogin, isAdmin);
                 loginResult = userLogged!=null;
@@ -121,13 +124,11 @@ namespace CoWorkingApp.App.Logic
                 
         }
     
-        public void ExecuteActionByUser(MenuUser menuUserSelected)
+        public void ExecuteActionByUser(User user, MenuUser menuUserSelected)
         {
             switch(menuUserSelected)
             {
                 case MenuUser.ReservarPuesto:
-                Console.WriteLine("Opción reservar puesto");
-
                 var deskList = deskData.GetAvailableDesk();
                 Console.WriteLine("Puestos disponibles:");
                 foreach(var item in deskList){
@@ -144,9 +145,11 @@ namespace CoWorkingApp.App.Logic
 
                 }
                 
+                newReservation.DeskId = deskFound.DeskId;
 
                 var dateSelected = new DateTime();
-                while(dateSelected.Year ==0001)
+
+                while(dateSelected.Year == 0001)
                 {
                     Console.WriteLine("Ingrese la fecha de reserva (dd-mm-yyyy)");
                     DateTime.TryParseExact(Console.ReadLine(), "dd-MM-yyyy",null,DateTimeStyles.None,out dateSelected);
@@ -155,16 +158,51 @@ namespace CoWorkingApp.App.Logic
 
                 newReservation.ReservationDate = dateSelected;
                 newReservation.UserId = user.UserId;
+                reservationData.CreateReservation(newReservation);
+                Console.WriteLine("Reservación creada!");
 
                 break;
                 case MenuUser.CancelarReserva:
-                Console.WriteLine("Opción cancelar puesto");
+                Console.WriteLine("Estas son las reservaciones disponibles");
+                var userReservations = reservationData.GetReservationByUser(user.UserId).ToList();
+                var deskUserList = deskData.GetAvailableDesk().ToList();
+                int indexReservation = 1;
+
+                foreach(var item in userReservations)
+                {
+                    Console.WriteLine($"{indexReservation} - {deskUserList.FirstOrDefault(p => p.DeskId ==item.DeskId).Number} - {item.ReservationDate.ToString("dd-MM-yyy")}");
+                    indexReservation++;
+                }
+                var indexReservationSelected = 0;
+                while(indexReservationSelected<1 || indexReservationSelected>indexReservation)
+                {
+                    Console.WriteLine("Ingrese el número de la reservación que desea eliminar");
+                    indexReservationSelected = int.Parse(Console.ReadLine());
+                }
+
+                Console.WriteLine("index reservation selected {0}",indexReservationSelected);
+                var reservationToDelete = userReservations[indexReservationSelected-1];
+
+                reservationData.CancelReservation(reservationToDelete.ReservationId);
+                Console.WriteLine("Reservación cancelada.");
+
                 break;
                 case MenuUser.HistorialReservars:
-                Console.WriteLine("Opción ver el historial de reserva");
+                Console.WriteLine("Tus Reservas");
+                var historyReservationUser = reservationData.GetReservationHistoryByUser(user.UserId);
+                var deskHistoryList = deskData.GetAvailableDesk().ToList();
+                foreach(var item in historyReservationUser)
+                {
+                    Console.ForegroundColor  = item.ReservationDate > DateTime.Now ? ConsoleColor.Green : ConsoleColor.DarkGray;
+                    Console.WriteLine($"{deskHistoryList.FirstOrDefault(p => p.DeskId == item.DeskId).Number} - {item.ReservationDate.ToString("dd-MM-yyyy")} {(item.ReservationDate > DateTime.Now ? "(Activa)" : "")}");
+                    Console.ResetColor();
+                }
                 break;
-                case MenuUser.CambiarContraseña:
-                Console.WriteLine("Opción Cambiar contraseña");
+                case MenuUser.ChangePassoword:
+                Console.WriteLine("Escriba el password");
+                user.PassWord = PasswordManager.GetPassWord();
+                userData.EditUser(user);
+                Console.WriteLine("Password actualizado.");
                 break;
             }
         }

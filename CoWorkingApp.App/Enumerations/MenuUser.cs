@@ -4,6 +4,6 @@ namespace CoWorkingApp.App.Enumerations{
         ReservarPuesto = 1,
         CancelarReserva =2,
         HistorialReservars = 3,
-        CambiarContraseña = 4,
+        ChangePassoword = 4,
     }
 }

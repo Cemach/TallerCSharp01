@@ -4,6 +4,7 @@ using CoWorkingApp.App.Enumerations;
 using CoWorkingApp.App.Logic;
 using CoWorking.App.Data.Tools;
 using CoWorking.App.Models;
+using CoWorkingApp.App.Tools;
 
 namespace CoWorkingApp.App
 {
@@ -19,6 +20,7 @@ namespace CoWorkingApp.App
         static void Main(string[] args)
         {
             Console.WriteLine("Bienvenido al Coworking");
+            Console.WriteLine("Seleccione el rol con el que desea ingresar:");
             Console.WriteLine();
 
             string roleSelected = string.Empty;
@@ -33,9 +35,11 @@ namespace CoWorkingApp.App
             //Admin
             if(userRoleSelected == UserRole.Admin)
             {
+                
+
                 //Login before action
                 ActiveUser = UserLogicService.LoginUser(true);
-                
+                SpinnerManager.Show();
 
                 string menuAdminSelected = String.Empty;
                 while(menuAdminSelected!="1" && menuAdminSelected!="2")
@@ -56,20 +60,10 @@ namespace CoWorkingApp.App
                         menuPuestosSelected = Console.ReadLine();
                     }
                     AdminPuestos menuAdminPuestosSelected = Enum.Parse<AdminPuestos>(menuPuestosSelected);
-                    switch(menuAdminPuestosSelected){
-                        case AdminPuestos.Add:
-                        Console.WriteLine("Opción crear puestos");
-                        break;
-                        case AdminPuestos.Edit:
-                        Console.WriteLine("Opción Editar puestos");
-                        break;
-                        case AdminPuestos.Delete:
-                        Console.WriteLine("Opción Eliminar puestos");
-                        break;
-                        case AdminPuestos.Lock:
-                        Console.WriteLine("Opción Bloquear puestos");
-                        break;
-                    }
+
+                    DeskLogicService.ExecuteAction(menuAdminPuestosSelected);
+
+                    
                 }
                 else if(Enum.Parse<MenuAdmin>(menuAdminSelected) == MenuAdmin.AdministracionUsuarios)
                 {
@@ -106,21 +100,9 @@ namespace CoWorkingApp.App
                 }
 
                 MenuUser menuUserSelected= Enum.Parse<MenuUser>(menuUsuarioSelected);
-                switch(menuUserSelected){
-                    case MenuUser.ReservarPuesto:
-                    Console.WriteLine("Opción reservar puesto");
-                    break;
-                    case MenuUser.CancelarReserva:
-                    Console.WriteLine("Opción cancelar puesto");
-                    break;
-                    case MenuUser.HistorialReservars:
-                    Console.WriteLine("Opción ver el historial de reserva");
-                    break;
-                    case MenuUser.CambiarContraseña:
-                    Console.WriteLine("Opción Cambiar contraseña");
-                    break;
-                }
-                
+
+                UserLogicService.ExecuteActionByUser(ActiveUser, menuUserSelected);
+                                
             }
         }
     

@@ -1,0 +1,20 @@
+[
+  {
+    "DeskId": "f97921d9-a7ed-4cdb-8891-7474e495903c",
+    "Number": "A-001",
+    "Description": "puesto a1",
+    "DeskStatus": 1
+  },
+  {
+    "DeskId": "641a5383-4645-4e76-b7a5-8ee082d3d70a",
+    "Number": "A-002",
+    "Description": "puesto a2",
+    "DeskStatus": 1
+  },
+  {
+    "DeskId": "6b08118b-14fb-48db-a8fa-682f943d1e27",
+    "Number": "B-001",
+    "Description": "puesto b1",
+    "DeskStatus": 1
+  }
+]
