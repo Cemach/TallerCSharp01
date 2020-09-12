@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "tt52Pfu0yZwukYKsSecTfVmsrY2dI/U70rdo8+SIamlC/7MUakygiOBNASjY2/F6DPaMHyqxC5jmKYIzBIhISw==",
+  "success": true,
+  "projectFilePath": "D:\\Users\\cesar\\source\\repos\\Taller APP Csharp\\CoWorkingApp\\CoWorkingApp.Models\\CoWorkingApp.Models.csproj",
+  "expectedPackageFiles": [
+    "D:\\Users\\cesar\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "D:\\Users\\cesar\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "UserId": "6dce7165-719f-4235-a01a-240963501c62",
+    "Name": "ADMIN",
+    "LastName": "ADMIN",
+    "Email": "ADMIN",
+    "PassWord": "f227730e30dcc494f0647523513c68e71edf4ddf3dc209929cde19b3bb08fc20"
+  },
+  {
+    "UserId": "c47bbe7a-4b15-4852-a8d6-b7d75233dc5f",
+    "Name": "Cesar",
+    "LastName": "Choquehuanca",
+    "Email": "cesar@md-online.com.br",
+    "PassWord": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4"
+  },
+  {
+    "UserId": "372b1b35-cd2c-4066-8306-473f9d8e991c",
+    "Name": "Maria Regina",
+    "LastName": "Choquehuanca",
+    "Email": "maria@gmail.com",
+    "PassWord": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4"
+  },
+  {
+    "UserId": "2bcec814-93b9-475a-aa44-5606cc5618be",
+    "Name": "ingrid",
+    "LastName": "chira",
+    "Email": "ingrid@gmail.com",
+    "PassWord": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4"
+  }
+]

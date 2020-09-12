@@ -1,0 +1,12 @@
+D:\Users\cesar\source\repos\Taller APP Csharp\CoWorkingApp\CoWorkingApp.Data\bin\Debug\netstandard2.0\CoWorkingApp.Data.deps.json
+D:\Users\cesar\source\repos\Taller APP Csharp\CoWorkingApp\CoWorkingApp.Data\bin\Debug\netstandard2.0\CoWorkingApp.Data.dll
+D:\Users\cesar\source\repos\Taller APP Csharp\CoWorkingApp\CoWorkingApp.Data\bin\Debug\netstandard2.0\CoWorkingApp.Data.pdb
+D:\Users\cesar\source\repos\Taller APP Csharp\CoWorkingApp\CoWorkingApp.Data\bin\Debug\netstandard2.0\CoWorkingApp.Models.dll
+D:\Users\cesar\source\repos\Taller APP Csharp\CoWorkingApp\CoWorkingApp.Data\bin\Debug\netstandard2.0\CoWorkingApp.Models.pdb
+D:\Users\cesar\source\repos\Taller APP Csharp\CoWorkingApp\CoWorkingApp.Data\obj\Debug\netstandard2.0\CoWorkingApp.Data.csprojAssemblyReference.cache
+D:\Users\cesar\source\repos\Taller APP Csharp\CoWorkingApp\CoWorkingApp.Data\obj\Debug\netstandard2.0\CoWorkingApp.Data.AssemblyInfoInputs.cache
+D:\Users\cesar\source\repos\Taller APP Csharp\CoWorkingApp\CoWorkingApp.Data\obj\Debug\netstandard2.0\CoWorkingApp.Data.AssemblyInfo.cs
+D:\Users\cesar\source\repos\Taller APP Csharp\CoWorkingApp\CoWorkingApp.Data\obj\Debug\netstandard2.0\CoWorkingApp.Data.csproj.CoreCompileInputs.cache
+D:\Users\cesar\source\repos\Taller APP Csharp\CoWorkingApp\CoWorkingApp.Data\obj\Debug\netstandard2.0\CoWorkingApp.Data.csproj.CopyComplete
+D:\Users\cesar\source\repos\Taller APP Csharp\CoWorkingApp\CoWorkingApp.Data\obj\Debug\netstandard2.0\CoWorkingApp.Data.dll
+D:\Users\cesar\source\repos\Taller APP Csharp\CoWorkingApp\CoWorkingApp.Data\obj\Debug\netstandard2.0\CoWorkingApp.Data.pdb
